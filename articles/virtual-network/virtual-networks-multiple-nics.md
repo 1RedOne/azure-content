@@ -27,6 +27,13 @@ The figure above shows a VM with three NICs, each connected to a different subne
 
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)]
 
+## Deployment of a Multi NIC VM in the Azure Resource Manager Model (ARM)
+For complete instructions on deploying a multi-NIC VM in the Azure ARM Model, [click here.](https://azure.microsoft.com/en-us/documentation/articles/virtual-network-deploy-multinic-arm-template/)
+
+
+
+## Background information for classic deployment of a Multi NIC VM
+
 - Internet-facing VIP (classic deployments) is only supported on the "default" NIC. There is only one VIP to the IP of the default NIC.
 - At this time, Instance Level Public IP (LPIP) addresses (classic deployments) are not supported for multi NIC VMs.
 - The order of the NICs from inside the VM will be random, and could also change across Azure infrastructure updates. However, the IP addresses, and the corresponding ethernet MAC addresses will remain the same. For example, assume **Eth1** has IP address 10.1.0.100 and MAC address 00-0D-3A-B0-39-0D; after an Azure infrastructure update and reboot, it could be changed to **Eth2**, but the IP and MAC pairing will remain the same. When a restart is customer-initiated, the NIC order will remain the same.
@@ -41,9 +48,7 @@ If a subnet is associated with an NSG, and a NIC within that subnet is individua
 - **Incoming traffic** whose destination is the NIC in question flows first through the subnet, triggering the subnet’s NSG rules, before passing into the NIC, then triggering the NIC’s NSG rules.
 - **Outgoing traffic** whose source is the NIC in question flows first out from the NIC, triggering the NIC’s NSG rules, before passing through the subnet, then triggering the subnet’s NSG rules.
 
-Learn more about [Network Security Groups](virtual-networks-nsg.md) and how they are applied based on associations to subnets, VMs, and NICs..
-
-## How to Configure a multi NIC VM in a classic deployment
+Learn more about [Network Security Groups](virtual-networks-nsg.md) and how they are applied based on associations to subnets, VMs, and NICs.. 
 
 The instructions below will help you create a multi NIC VM containing 3 NICs: a default NIC and two additional NICs. The configuration steps will create a VM that will be configured according to the service configuration file fragment below:
 
